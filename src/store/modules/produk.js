@@ -3,54 +3,56 @@ import axios from 'axios';
 const produk = {
   namespaced: true,
   state: {
-    token: localStorage.getItem('token') || '',
-    loginError: null,
+    products: [],
+    currentProduct: null,
   },
   getters: {
-    isprodukenticated: (state) => !!state.token
-    
+    getAllProducts: (state) => state.products,
+    getProductById: (state) => (id) => {
+      return state.products.find(product => product.id === id);
+    },
+    getCurrentProduct: (state) => state.currentProduct,
   },
   actions: {
-    async login({ commit }, credentials) {
+    async fetchProducts({ commit }) {
       try {
-        const response = await axios.post(
-          'http://localhost:8080/api/v1/login',
-          credentials
-        );
-        const token = response.data.token;
-
-        localStorage.setItem('token', token);
-        
-
-        commit('SET_TOKEN', token);
-        commit ('SET_LOGIN_ERROR', null)
-        console.log("token saved:", token);
-        return true;
+        const response = await axios.get("http://localhost:8080/api/v1/produk");
+        commit("SET_PRODUCTS", response.data);
       } catch (error) {
-        const errorMessage = error.response.data.message || "Login Failed";
-        commit("SET_LOGIN_ERROR", errorMessage) 
         console.error(error);
-        return false;
+        throw error;
       }
     },
-    logout({ commit }) {
-      // Remove token from localStorage
-      const token = localStorage.getItem('token');
-      localStorage.removeItem('token');
-      commit('SET_TOKEN', '');
-      commit('SET_TOKEN', null);
-      //   Log Token removed
-      console.log('Token Removed:', token);
-      window.location = "/login";
+    async fetchProductById({ commit }, productId) {
+      try {
+        const response = await axios.get(`http://localhost:8080/api/v1/produk/${productId}`);
+        commit("SET_CURRENT_PRODUCT", response.data);
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
     },
+    async createProduct({ commit }, productData) {
+      try {
+        const response = await axios.post("http://localhost:8080/api/v1/produk", productData);
+        commit("ADD_PRODUCT", response.data);
+        return response.data;
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
+    // actions lainnya ...
   },
   mutations: {
-    SET_TOKEN(state, token) {
-      state.token = token;
+    SET_PRODUCTS(state, products) {
+      state.products = products;
     },
-    
-    SET_LOGIN_ERROR(state,error){
-      state.loginError = error;
+    SET_CURRENT_PRODUCT(state, product) {
+      state.currentProduct = product;
+    },
+    ADD_PRODUCT(state, newProduct) {
+      state.products.push(newProduct);
     },
   },
 };
