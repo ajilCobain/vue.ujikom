@@ -5,9 +5,10 @@
       <div class="flex h-full flex-grow flex-col overflow-y-auto rounded-br-lg rounded-tr-lg bg-white pt-5 shadow-md">
         <div class="flex mt-10 items-center px-4">
           <img class="h-12 w-auto max-w-full align-middle" src="" alt="" />
-          <div class="flex ml-3 flex-col">
-            <h3 class="font-medium">Sarah Carter</h3>
-            <p class="text-xs text-gray-500">Sr. Engineer</p>
+          <div class="flex ml-3 flex-col" v-if="user">
+            <h3 class="font-medium">{{  user.name }}</h3>
+            <h3 class="font-medium">{{ user.email }}</h3> 
+            <h3 class="font-medium">{{ user.role }}</h3>
           </div>
         </div>
 
@@ -56,7 +57,7 @@
               <li>
                 <router-link
                   class="flex m-2 cursor-pointer border-l-rose-600 py-3 pl-5 text-sm text-gray-600 transition-all duration-100 ease-in-out hover:border-l-4 hover:text-rose-600"
-                  to="">
+                  to="/admin/produk">
                   <svg class="mr-4 h-5 w-5 align-middle" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -114,8 +115,32 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
+  computed: {
+    ...mapGetters('datauser', ['getDataUser' , 'getCurrentUser']), // Mengambil getter getUserData dari datauser module
+    user () {
+      return this.getCurrentUser;
+    },
+  },
+  created() {
+    // Panggil metode untuk mengambil data pengguna saat komponen dibuat
+    this.fetchCurrentUser();
+  console.log('Data user from Vuex:', this.getCurrentUser);
+  },
   methods: {
+    ...mapActions('datauser', ['fetchCurrentUser']), // Mengambil action fetchUserData dari datauser module
+    async getUserData() {
+      // Ambil data pengguna dari state menggunakan getter
+      const userData = this.getUserData;
+      // Jika data pengguna tersedia
+      if (userData) {
+        // Setel nama pengguna dan email pengguna dari data yang diambil
+        this.userName = userData.name;
+        this.userEmail = userData.email;
+      }
+    },
     validateLogout() {
       if (confirm('Apakah Anda yakin ingin logout?')) {
         this.logoutAndRedirect();
@@ -124,16 +149,17 @@ export default {
       }
     },
     logoutAndRedirect() {
-      // Lakukan proses logout di sini
-      // Contoh: hapus token, bersihkan data pengguna dari local storage, dll.
-
+      // Hapus token dari localStorage
+      localStorage.removeItem('token');
+      
       // Tampilkan notifikasi bahwa logout berhasil
       alert('Anda telah berhasil logout');
 
       // Redirect ke halaman login
-      // Ganti '/login' dengan path halaman login yang sesuai
       window.location.href = '/login';
     }
   }
 }
 </script>
+
+

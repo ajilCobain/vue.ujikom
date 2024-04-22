@@ -18,9 +18,10 @@ const auth = {
           credentials
         );
         const token = response.data.token;
+        const user = response.data.user;
 
-        localStorage.setItem('token', token);
-        
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
 
         commit('SET_TOKEN', token);
         commit ('SET_LOGIN_ERROR', null)
@@ -37,8 +38,8 @@ const auth = {
       // Remove token from localStorage
       const token = localStorage.getItem('token');
       localStorage.removeItem('token');
-      commit('SET_TOKEN', '');
-      commit('SET_TOKEN', null);
+      localStorage.removeItem('user'); // Pastikan untuk menghapus item 'user' juga jika diperlukan
+      commit('SET_TOKEN', ''); // Cukup menghapus token dari state Vuex satu kali
       //   Log Token removed
       console.log('Token Removed:', token);
       window.location = "/login";

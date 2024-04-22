@@ -2,55 +2,44 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/HomeView.vue';
 import Login from '../components/Login.vue';
 
-import Brand from '../views/user/Brand.vue';
+import Brand from '../views/Brand.vue';
 import Galeri from '../views/Galeri.vue';
 import TentangKami from '../views/TentangKami.vue';
 import Kontak from '../views/Kontak.vue';
-import Footer from '../components/footer.vue';
-import Navbar from '../components/navbar.vue';
-import LayoutAdmin from '../layout/LayoutAdmin.vue';
-import admin from '../views/admin/dasboard.vue';
-import table from '../views/tabel/tabel_user.vue';
+import Footer from '../components/guest/footer.vue';
+import Navbar from '../components/guest/navbar.vue';
+import LayoutAdmin from '../layout/layout.vue';
+import admin from '../views/admin/dashboard.vue';
+import tabel from '../views/tabel/tabel_user.vue';
 import profile from '../views/admin/profile.vue';
-import kontak from '../views/tabel/tabel_kontak.vue';
+import kontak from '../views/tabel/table_kontak.vue';
+import produk from '../views/admin/produk.vue';
+import LayoutUser from '../layout/userLayout.vue'
+
+function guardMyroute(to, from, next)
+{
+ var isAuthenticated= false;
+if(localStorage.getItem('token'))
+  isAuthenticated = true;
+ else
+  isAuthenticated= false;
+ if(isAuthenticated) 
+ {
+  next(); // allow to enter route
+ } 
+ else
+ {
+  next('/login'); // go to '/login';
+ }
+}
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: Home,
-    },
-    {
       path: '/login',
       name: 'login',
       component: Login,
-    },
-    {
-      path: '/brand',
-      name: 'brand',
-      component: Brand
-    },
-    {
-      path: '/galeri',
-      name: 'galeri',
-      component: Galeri
-    },
-    {
-      path: '/tentangkami',
-      name: 'tentangkami',
-      component: TentangKami
-    },
-    {
-      path: '/kontak',
-      name: 'kontak',
-      component: Kontak
-    },
-    {
-      path: '/navbar',
-      name: 'navbar',
-      component: Navbar
     },
     {
       path: '/footer',
@@ -59,8 +48,9 @@ const router = createRouter({
     },
     {
       path: '/admin',
-      name: 'LayoutAdmin',
+      name: 'layout',
       component: LayoutAdmin,
+      beforeEnter: guardMyroute,
       children: [
           {
             path: '/admin',
@@ -82,6 +72,39 @@ const router = createRouter({
             name: 'AdminKontak',
             component: kontak
           },
+          {
+            path: '/admin/produk',
+            name: 'AdminProduk',
+            component: produk
+          },
+      ]
+    },
+    {
+      path: '/',
+      name: 'layoutUser',
+      component: LayoutUser,
+      children: [
+          {
+            path: '/',
+            name: 'home',
+            component: Home,
+          },
+          {
+            path: '/kontak',
+            name: 'kontak',
+            component: Kontak,
+          },
+          {
+            path: '/brand',
+            name: 'brand',
+            component: Brand,
+          },
+          {
+            path: '/galeri',
+            name: 'galeri',
+            component: Galeri
+          },
+         
       ]
     },
   ]

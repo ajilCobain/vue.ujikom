@@ -5,9 +5,11 @@ const datauser = {
   namespaced: true,
   state: {
     dataUser: [],
+    currentUser: null,
   },
   getters: {
     getDataUser: (state) => state.dataUser,
+    getCurrentUser: (state) => state.currentUser,
   },
   actions: {
     async fetchDataUser({ commit }) {
@@ -51,6 +53,26 @@ const datauser = {
         throw error; // Melemparkan error untuk ditangani di luar action jika diperlukan
       }
     },
+    async fetchCurrentUser({ commit }) {
+        try {
+          const token = localStorage.getItem('token'); // Get token from localStorage
+          if (!token) {
+            throw new Error('Token not found');
+          }
+  
+          const config = {
+            headers: {
+              'Authorization': `Bearer ${token}` // Set authorization header with token
+            }
+          };
+  
+          const response = await axios.get("http://localhost:8080/api/v1/user/me", config); // Fetch user data using /me endpoint
+          commit("SET_CURRENT_USER", response.data.data); // Commit current user data to state
+        } catch (error) {
+          alert(error);
+          console.log(error);
+        }
+      },
     // actions lainnya ...
   },
   mutations: {
@@ -71,6 +93,9 @@ const datauser = {
         state.dataUser.splice(index, 1, updatedUser);
       }
     },
+    SET_CURRENT_USER(state, user) {
+        state.currentUser = user; // Set current user data in state
+      },
     // mutations lainnya ...
   },
 };

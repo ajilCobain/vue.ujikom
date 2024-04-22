@@ -15,7 +15,7 @@
                             <th class="px-5 py-3">ID</th>
                             <th class="px-5 py-3">NAMA</th>
                             <th class="px-5 py-3">EMAIL</th>
-                            <th class="px-5 py-3">DESCRIPTION</th>
+                            <th class="px-5 py-3">PESAN</th>
                             <th class="px-5 py-3">STATUS </th>
                         </tr>
                     </thead>
@@ -31,7 +31,7 @@
                                 <p class="whitespace-no-wrap">{{ Kontak.email }} </p>
                             </td>
                             <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                                <p class="whitespace-no-wrap">{{ Kontak.description }} </p>
+                                <p class="whitespace-no-wrap">{{ Kontak.pesan }} </p>
                             </td>
                             <td class="border-b border-gray-200 bg-white px-5 py-5 text-sm">
                                 <p class="whitespace-no-wrap">
