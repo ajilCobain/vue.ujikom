@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/HomeView.vue';
 import Login from '../components/Login.vue';
-
+import addProduk from '../views/admin/addProduk.vue'
 import Brand from '../views/Brand.vue';
 import Galeri from '../views/Galeri.vue';
 import TentangKami from '../views/TentangKami.vue';
@@ -14,7 +14,8 @@ import tabel from '../views/tabel/tabel_user.vue';
 import profile from '../views/admin/profile.vue';
 import kontak from '../views/tabel/table_kontak.vue';
 import produk from '../views/admin/produk.vue';
-import LayoutUser from '../layout/userLayout.vue'
+import LayoutUser from '../layout/userLayout.vue';
+import editProduk from '../views/admin/editProduk.vue';
 
 function guardMyroute(to, from, next)
 {
@@ -76,6 +77,16 @@ const router = createRouter({
             path: '/admin/produk',
             name: 'AdminProduk',
             component: produk
+          },
+          {
+            path: '/admin/addProduk',
+            name: 'addProduk',
+            component: addProduk
+          },
+          {
+            path: '/admin/editProduk',
+            name: 'editProduk',
+            component: editProduk
           },
       ]
     },
