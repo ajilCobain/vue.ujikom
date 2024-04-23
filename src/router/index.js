@@ -84,7 +84,7 @@ const router = createRouter({
             component: addProduk
           },
           {
-            path: '/admin/editProduk',
+            path: '/admin/editProduk/:id',
             name: 'editProduk',
             component: editProduk
           },
@@ -115,6 +115,12 @@ const router = createRouter({
             name: 'galeri',
             component: Galeri
           },
+          {
+            path: '/tentangKami',
+            name: 'TentangKami',
+            component: TentangKami
+          },
+          
          
       ]
     },

@@ -60,7 +60,7 @@ export default {
     },
     editProduct(productId) {
       // Implement logic to navigate to edit product page with productId
-      this.$router.push(`/admin/editProduk`);
+      this.$router.push(`/admin/editProduk/${productId}`);
     },
     confirmDeleteProduct(productId) {
       if (confirm('Apakah Anda yakin ingin menghapus produk ini?')) {

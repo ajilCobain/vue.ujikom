@@ -8,9 +8,7 @@ const produk = {
   },
   getters: {
     getAllProducts: (state) => state.products,
-    getProductById: (state) => (id) => {
-      return state.products.find(product => product.id === id);
-    },
+    getProductById: (state) => state.currentProduct,
     getCurrentProduct: (state) => state.currentProduct,
   },
   actions: {
@@ -28,7 +26,7 @@ const produk = {
         const response = await axios.get(`http://localhost:8080/api/v1/produk/${productId}`);
         commit("SET_CURRENT_PRODUCT", response.data);
       } catch (error) {
-        console.error(error);
+        console.error(error.response.message);
         throw error;
       }
     },
@@ -45,7 +43,6 @@ const produk = {
     async updateProduct({ commit }, productData) {
       try {
         const response = await axios.put(`http://localhost:8080/api/v1/produk/${productData.id}`, productData);
-        commit("UPDATE_PRODUCT", response.data);
         return response.data;
       } catch (error) {
         console.error(error);
@@ -73,12 +70,6 @@ const produk = {
     },
     ADD_PRODUCT(state, newProduct) {
       state.products.push(newProduct);
-    },
-    UPDATE_PRODUCT(state, updatedProduct) {
-      const index = state.products.findIndex(product => product.id === updatedProduct.id);
-      if (index !== -1) {
-        state.products.splice(index, 1, updatedProduct);
-      }
     },
     DELETE_PRODUCT(state, productId) {
       state.products = state.products.filter(product => product.id !== productId);

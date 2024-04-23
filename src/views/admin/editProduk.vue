@@ -2,7 +2,7 @@
   <div class="flex items-center justify-center min-h-screen bg-gray-100">
     <div class="bg-white shadow-md rounded-md p-6 max-w-md">
       <h1 class="text-2xl font-bold mb-4 text-center">Edit Produk</h1>
-      <form @submit.prevent="submitForm">
+      <form @submit.prevent="updateProduk">
         <div class="mb-4">
           <label for="nama_produk" class="block text-sm font-medium text-gray-700">Nama Produk</label>
           <input type="text" id="nama_produk" v-model="formData.nama_produk" class="mt-1 p-2 block w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring focus:ring-indigo-200">
@@ -53,57 +53,54 @@ export default {
       }
     };
   },
-  // computed: {
-  //   ...mapGetters('produk', ['getProductById']),
-  // },
-  // methods: {
-  //   ...mapActions('produk', ['editProduct']),
-  //   async submitForm() {
-  //     try {
-  //       const productId = this.$route.params.id; // Get product ID from route params
-  //       const response = await this.editProduct({ id: productId, ...this.formData }); // Call editProduct action with product ID and form data
-  //       console.log('Product edit:', response);
-  methods: {
-    ...mapActions('produk', ['fetchProdukById', 'updateProduk', 'deleteProduk']),
-    async formData() {
-      if (!this.produk.id) {
-        alert("Harap masukkan ID produk");
-        return;
-      }
-      try{   
-        const product = await this.$store.dispatch('product/fecthProductById', this.produk.id);   // Reset form data after successful edit
-        this.formData = {
-          nama_produk: '',
-          description: '',
-          gambar: '',
-          harga: '',
-          size_chart: 'S',
-          stok: 0
-        };
-        this.$router.push('/admin/produk');
-      } catch (error) {
-        console.error('Error edit product:', error);
-      }
-    },
-    async updateProduk() {
-      const product = {
-       id: this.product.id,
-       nama_produk: this.nama_produk,
-       description: this.description,
-       gambar: this.gambar,
-       harga: this.harga
-
-      }
-    },
-    fetchData() {
-      const productId = this.$route.params.id; // Get product ID from route params
-      const product = this.getProductById(productId); // Get product data from Vuex store
-      if (product) {
-        // Populate form data with existing product data
-        this.formData = { ...product };
-      }
+  computed: {
+    ...mapGetters('produk', ['getProductById']),
+    produk(){
+      return this.getProductById
     }
   },
+  methods: {
+  ...mapActions('produk', ['fetchProductById', 'updateProduct', 'deleteProduct']), // Perbaiki pemanggilan aksi dengan nama yang benar
+  
+  async updateProduk() {
+    const product = {
+      id: this.$route.params.id, // Perbaiki pengambilan ID
+      nama_produk: this.formData.nama_produk, // Ambil nilai dari formData
+      description: this.formData.description,
+      gambar: this.formData.gambar,
+      harga: this.formData.harga,
+      size_chart: this.formData.size_chart,
+      stok: this.formData.stok,
+    };
+    try {
+      const success = await this.$store.dispatch('produk/updateProduct', product); // Perbaiki pemanggilan aksi dengan nama yang benar
+      if (success) {
+        this.$router.push('/admin/produk')
+        alert("Berhasil memperbarui produk");
+      }
+    } catch(error) {
+      alert("Gagal memperbarui produk");
+    }
+  },
+  
+  async fetchData() {
+  await this.fetchProductById(this.$route.params.id);
+  const produk = this.produk.data;
+  console.log(produk); // Tambahkan ini untuk memeriksa nilai produk di konsol browser
+  if (produk) {
+    this.formData = {
+      nama_produk: produk.nama_produk,
+      description: produk.description,
+      gambar: produk.gambar,
+      harga: produk.harga,
+      size_chart: produk.size_chart,
+      stok: produk.stok
+    };
+  }
+}
+
+},
+
   mounted() {
     this.fetchData(); // Fetch product data when component is mounted
   }
