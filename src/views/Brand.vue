@@ -33,21 +33,18 @@
 <aside aria-label="Related Articles" class="mx-auto mt-10 max-w-screen-xl py-20">
 
   <div class="mx-auto grid max-w-screen-lg justify-center px-4 sm:grid-cols-2 sm:gap-6 sm:px-2 md:grid-cols-4">
-    <article class="mx-auto my-4 flex flex-col overflow-hidden rounded-lg border border-gray-300 bg-white text-gray-900 transition hover:translate-y-2 hover:shadow-lg" v-for="item in produk" :key="item.id">
-      <a href="#">
+    <article class="mx-auto my-4 flex flex-col overflow-hidden rounded-lg border border-gray-300 bg-white text-gray-900 transition hover:translate-y-2 hover:shadow-lg" v-for="item in produk?.slice(0, 4)" :key="item.id">
         <img :src="item.gambar" class="h-56 w-56 object-cover" alt="" />
         <div class="flex-auto px-6 py-5">
           <span class="mb-2 flex items-center text-sm font-semibold">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
-            </svg>
-            Branding</span
+            {{ item.nama_produk }}</span
           >
-          <h3 class="mt-4 mb-3 text-xl font-semibold xl:text-2xl">{{ item.nama_produk }}</h3>
-          <p class="mb-4 text-base font-light">{{ item.description }}</p>
+          <h3 class="mt-3 mb-2 text-xl font-semibold xl:text-2xl">{{ item.harga }}</h3>
+          <p class=" text-base font-light">{{ item.description }}</p>
+          <p class=" text-base font-light">Stok:{{ item.stok }}</p>
+          <p class=" mb-4 text-base font-light">Size:{{ item.size_chart }}</p>
           <span class="inline-block cursor-pointer select-none rounded-full border border-gray-800 bg-gray-800 px-2 py-1 text-center align-middle text-sm font-semibold leading-normal text-white no-underline shadow-sm">Read Now</span>
         </div>
-      </a>
     </article>
   </div>
 </aside>
@@ -77,71 +74,18 @@
 <aside aria-label="Related Articles" class="mx-auto mt-10 max-w-screen-xl py-20">
 
 <div class="mx-auto grid max-w-screen-lg justify-center px-4 sm:grid-cols-2 sm:gap-6 sm:px-2 md:grid-cols-4">
-  <article class="mx-auto my-4 flex flex-col overflow-hidden rounded-lg border border-gray-300 bg-white text-gray-900 transition hover:translate-y-2 hover:shadow-lg">
-    <a href="#">
-      <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHBhcnRuZXJzaGlwfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" class="h-56 w-full object-cover" alt="" />
+  <article class="mx-auto my-4 flex flex-col overflow-hidden rounded-lg border border-gray-300 bg-white text-gray-900 transition hover:translate-y-2 hover:shadow-lg" v-for="item in produk?.slice(4, 8)" :key="item.id">
+      <img :src="item.gambar" class="h-56 w-56 object-cover" alt="" />
       <div class="flex-auto px-6 py-5">
         <span class="mb-2 flex items-center text-sm font-semibold">
-          <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
-          </svg>
-          Branding</span
+          {{ item.nama_produk }}</span
         >
-        <h3 class="mt-4 mb-3 text-xl font-semibold xl:text-2xl">How to perform NPS Surveys</h3>
-        <p class="mb-4 text-base font-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam tempore officiis. Lorem, ipsum dolor.</p>
+        <h3 class="mt-3 mb-2 text-xl font-semibold xl:text-2xl">{{ item.harga }}</h3>
+        <p class=" text-base font-light">{{ item.description }}</p>
+        <p class=" text-base font-light">Stok:{{ item.stok }}</p>
+        <p class=" mb-4 text-base font-light">Size:{{ item.size_chart }}</p>
         <span class="inline-block cursor-pointer select-none rounded-full border border-gray-800 bg-gray-800 px-2 py-1 text-center align-middle text-sm font-semibold leading-normal text-white no-underline shadow-sm">Read Now</span>
       </div>
-    </a>
-  </article>
-
-  <article class="mx-auto my-4 flex flex-col overflow-hidden rounded-lg border border-gray-300 bg-white text-gray-900 transition hover:translate-y-2 hover:shadow-lg">
-    <a href="#">
-      <img src="https://images.unsplash.com/photo-1594122230689-45899d9e6f69?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXdhcmRzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" class="h-56 w-full object-cover" alt="" />
-      <div class="flex-auto px-6 py-5">
-        <span class="mb-2 flex items-center text-sm font-semibold">
-          <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
-          </svg>
-          Public Relations</span
-        >
-        <h3 class="mt-4 mb-3 text-xl font-semibold xl:text-2xl">Understanding Public Relations</h3>
-        <p class="mb-4 text-base font-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam tempore officiis. Lorem, ipsum dolor.</p>
-        <span class="inline-block cursor-pointer select-none rounded-full border border-gray-800 bg-gray-800 px-2 py-1 text-center align-middle text-sm font-semibold leading-normal text-white no-underline shadow-sm">Read Now</span>
-      </div>
-    </a>
-  </article>
-  <article class="mx-auto my-4 flex flex-col overflow-hidden rounded-lg border border-gray-300 bg-white text-gray-900 transition hover:translate-y-2 hover:shadow-lg">
-    <a href="#">
-      <img src="https://images.unsplash.com/photo-1594122230689-45899d9e6f69?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXdhcmRzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" class="h-56 w-full object-cover" alt="" />
-      <div class="flex-auto px-6 py-5">
-        <span class="mb-2 flex items-center text-sm font-semibold">
-          <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
-          </svg>
-          Public Relations</span
-        >
-        <h3 class="mt-4 mb-3 text-xl font-semibold xl:text-2xl">Understanding Public Relations</h3>
-        <p class="mb-4 text-base font-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam tempore officiis. Lorem, ipsum dolor.</p>
-        <span class="inline-block cursor-pointer select-none rounded-full border border-gray-800 bg-gray-800 px-2 py-1 text-center align-middle text-sm font-semibold leading-normal text-white no-underline shadow-sm">Read Now</span>
-      </div>
-    </a>
-  </article>
-
-  <article class="mx-auto my-4 flex flex-col overflow-hidden rounded-lg border border-gray-300 bg-white text-gray-900 transition hover:translate-y-2 hover:shadow-lg">
-    <a href="#">
-      <img src="https://images.unsplash.com/photo-1569705460033-cfaa4bf9f822?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YXdhcmRzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" class="h-56 w-full object-cover" alt="" />
-      <div class="flex-auto px-6 py-5">
-        <span class="mb-2 flex items-center text-sm font-semibold">
-          <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
-          </svg>
-          Marketing</span
-        >
-        <h3 class="mt-4 mb-3 text-xl font-semibold xl:text-2xl">Marketing is looking for untapped opportunities</h3>
-        <p class="mb-4 text-base font-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam tempore officiis. Lorem, ipsum dolor.</p>
-        <span class="inline-block cursor-pointer select-none rounded-full border border-gray-800 bg-gray-800 px-2 py-1 text-center align-middle text-sm font-semibold leading-normal text-white no-underline shadow-sm">Read Now</span>
-      </div>
-    </a>
   </article>
 </div>
 </aside>
