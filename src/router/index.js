@@ -7,7 +7,6 @@ import Galeri from '../views/Galeri.vue';
 import TentangKami from '../views/TentangKami.vue';
 import Kontak from '../views/Kontak.vue';
 import Footer from '../components/guest/footer.vue';
-import Navbar from '../components/guest/navbar.vue';
 import LayoutAdmin from '../layout/layout.vue';
 import admin from '../views/admin/dashboard.vue';
 import tabel from '../views/tabel/tabel_user.vue';
@@ -16,6 +15,7 @@ import kontak from '../views/tabel/table_kontak.vue';
 import produk from '../views/admin/produk.vue';
 import LayoutUser from '../layout/userLayout.vue';
 import editProduk from '../views/admin/editProduk.vue';
+import galeriAdmin from '@/views/admin/galeriAdmin.vue';
 
 function guardMyroute(to, from, next)
 {
@@ -87,6 +87,11 @@ const router = createRouter({
             path: '/admin/editProduk/:id',
             name: 'editProduk',
             component: editProduk
+          },
+          {
+            path: '/admin/galeri',
+            name: 'galeriAdmin',
+            component: galeriAdmin
           },
       ]
     },

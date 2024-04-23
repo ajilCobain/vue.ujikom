@@ -58,7 +58,7 @@
       </svg>
       <p class="mt-3 font-medium text-sm">Pesan</p>
       <p class="mt-1 text-lg font-medium">
-        $23.4k
+        {{pesan?.length }}
         <svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" fill="none" viewBox="0 0 24 24"
           stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
@@ -76,7 +76,7 @@ export default{
   computed: {
     ...mapGetters('datauser', ['getDataUser']),
     ...mapGetters('produk', ['getAllProducts']),
-    ...mapGetters('produk', ['getAllProducts']),
+    ...mapGetters('kontak', ['getDataKontak']),
     users(){
       return this.getDataUser;
      
@@ -85,16 +85,18 @@ export default{
       return this.getAllProducts.data;
     },
     pesan(){
-      return this.getAllProducts.data;
+      return this.getDataKontak;
     }
   },
   methods:{
     ...mapActions('datauser', ['fetchDataUser']),
-    ...mapActions('produk', ['fetchProducts'])
+    ...mapActions('produk', ['fetchProducts']),
+    ...mapActions('kontak', ['fetchDataKontak'])
   },
   mounted(){
     this.fetchDataUser();
     this.fetchProducts();
+    this.fetchDataKontak();
   }
 }
 </script>
