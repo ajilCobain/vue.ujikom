@@ -1,8 +1,8 @@
 <template>
-  <header class="relative flex max-w-screen-xl flex-col overflow-hidden px-4 py-4 text-slate-700 md:mx-auto md:flex-row md:items-center">
+  <nav class="relative flex max-w-screen-xl flex-col overflow-hidden px-4 py-4 text-slate-700 md:mx-auto md:flex-row md:items-center">
     <a href="#" class="flex cursor-pointer items-center whitespace-nowrap text-2xl font-black"> 
       <span class="mr-2 text-4xl text-emerald-500"> 
-        <img src="../../public/9455208d2a320711e8d5ad6c789fc4d2-removebg-preview.png" alt="" height="120" width="120" style="background-color: black;border-radius:50% ;">
+        <img src="../../public/9455208d2a320711e8d5ad6c789fc4d2-removebg-preview.png" alt="" height="30" width="30" style="background-color: black;border-radius:50% ;">
       </span>
       <p class="text-green-700"> Casse Youth</p>
     </a>
@@ -34,7 +34,7 @@
         </li>
       </ul>
     </nav>
-  </header>
+  </nav>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="m-10 grid gap-5 sm:grid-cols-4 mx-auto max-w-screen-lg space-x-6">
+  <div class="m-10 grid gap-5 sm:grid-cols-4 mx-auto max-w-screen-lg space-x-6 ">
     
     <div class="px-4 py-4 shadow-lg shadow-blue-100 rounded-xl">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 rounded-xl bg-rose-400 p-3 text-white"
@@ -8,13 +8,13 @@
       </svg>
       <p class="mt-3 font-medium text-sm">Users</p>
       <p class="mt-1 text-lg font-medium">
-        23.4k
+        {{ users?.length }}
         <svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" fill="none" viewBox="0 0 24 24"
           stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
         </svg>
       </p>
-      <span class="text-xs text-gray-400">+4.9%</span>
+      <span class="text-xs text-gray-400">user</span>
     </div>
     <div class="px-4 py-4 shadow-lg shadow-blue-100 rounded-xl">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 rounded-xl bg-blue-400 p-3 text-white"
@@ -26,7 +26,7 @@
       </svg>
       <p class="mt-3 font-medium text-sm">Product</p>
       <p class="mt-1 text-lg font-medium">
-        23.4k
+        {{ produk?.length }}
         <svg xmlns="http://www.w3.org/2000/svg" class="inline h-4 w-4" fill="none" viewBox="0 0 24 24"
           stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
@@ -68,3 +68,33 @@
     </div>
   </div>
 </template>
+
+<script>
+import { mapActions, mapGetters } from 'vuex';
+
+export default{
+  computed: {
+    ...mapGetters('datauser', ['getDataUser']),
+    ...mapGetters('produk', ['getAllProducts']),
+    ...mapGetters('produk', ['getAllProducts']),
+    users(){
+      return this.getDataUser;
+     
+    },
+    produk(){
+      return this.getAllProducts.data;
+    },
+    pesan(){
+      return this.getAllProducts.data;
+    }
+  },
+  methods:{
+    ...mapActions('datauser', ['fetchDataUser']),
+    ...mapActions('produk', ['fetchProducts'])
+  },
+  mounted(){
+    this.fetchDataUser();
+    this.fetchProducts();
+  }
+}
+</script>
