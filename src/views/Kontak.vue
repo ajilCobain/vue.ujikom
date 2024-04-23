@@ -26,8 +26,17 @@
     <path d="M17.5 6.5h.01"></path>
   </svg>
   <div>
-    <p class="font-serif text-base md:text-lg">abraham</p>
+    <p class="font-serif text-base md:text-lg">nazrlllhm</p>
     <span class="block text-xs uppercase">Instagram</span>
+  </div>
+</li>
+<li class="my-6 flex items-center text-left">
+  <svg class="shrink-0 mr-6 text-2xl text-gray-500" xmlns="http://www.w3.org/2000/svg" aria-label="GitHub" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+    <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.86 8.17 6.84 9.49.5.09.68-.22.68-.49c0-.24-.01-.88-.01-1.73-2.49.45-3.01-1.2-3.01-1.2-.41-1.05-1-1.33-1-1.33-.82-.56.06-.55.06-.55.91.06 1.39.94 1.39.94.81 1.39 2.12.99 2.64.76.08-.59.31-.99.56-1.22-1.96-.22-4.02-.98-4.02-4.36 0-1.04.37-1.89.94-2.56-.09-.22-.41-1.21.09-2.52 0 0 .81-.26 2.64.97.76-.21 1.57-.31 2.38-.31.81 0 1.62.1 2.38.31 1.83-1.23 2.64-.97 2.64-.97.5 1.31.18 2.3.09 2.52.57.67.94 1.52.94 2.56 0 3.38-2.06 4.14-4.02 4.36.32.27.68.82.68 1.66 0 1.2-.01 2.17-.01 2.47 0 .27.18.59.69.49C19.14 20.16 22 16.41 22 12c0-5.52-4.48-10-10-10z"></path>
+  </svg>
+  <div>
+    <p class="font-serif text-base md:text-lg">ajilCobain</p>
+    <span class="block text-xs uppercase">GitHub</span>
   </div>
 </li>
 

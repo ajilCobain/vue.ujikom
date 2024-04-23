@@ -77,6 +77,7 @@ export default{
     ...mapGetters('datauser', ['getDataUser']),
     ...mapGetters('produk', ['getAllProducts']),
     ...mapGetters('kontak', ['getDataKontak']),
+    ...mapGetters('galeri', ['getAllGaleri']),
     users(){
       return this.getDataUser;
      
@@ -86,17 +87,22 @@ export default{
     },
     pesan(){
       return this.getDataKontak;
+    },
+    galeri(){
+      return this.getAllGaleri;
     }
   },
   methods:{
     ...mapActions('datauser', ['fetchDataUser']),
     ...mapActions('produk', ['fetchProducts']),
-    ...mapActions('kontak', ['fetchDataKontak'])
+    ...mapActions('kontak', ['fetchDataKontak']),
+    ...mapActions('galeri', ['fetchGaleri'])
   },
   mounted(){
     this.fetchDataUser();
     this.fetchProducts();
     this.fetchDataKontak();
+    this.fetchGaleri();
   }
 }
 </script>

@@ -35,7 +35,7 @@ Kualitas dan Kenyamanan: Menghadirkan produk berkualitas tinggi dan nyaman yang 
 Budaya Skater dan Musisi: Menyatu dengan budaya skater dan musisi, mendukung komunitas ini dan terus menjadi pendorong utama tren dan gaya.</p>
     </div>
     <p class="hidden uppercase md:block md:text-7xl">
-      <span class="whitespace-nowrap text-blue-600"> <img src="https://i.pinimg.com/564x/94/55/20/9455208d2a320711e8d5ad6c789fc4d2.jpg" loading="lazy" alt="Photo by Martin Sanchez" class="h-full w-full object-cover object-center" /></span>
+      
     </p>
   </div>
   <br>

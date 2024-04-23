@@ -44,7 +44,7 @@ const galeri = {
     async updateGaleri({ commit }, galeriData) {
       try {
         const response = await axios.put(`http://localhost:8080/api/v1/galeri/${galeriData.id}`, galeriData);
-        return response.data;
+        return response.data.data;
       } catch (error) {
         console.error(error);
         throw error;

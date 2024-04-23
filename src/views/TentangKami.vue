@@ -13,18 +13,16 @@
 
 <div class="mx-auto my-10 max-w-lg px-4 text-black-600 md:max-w-screen-lg">
   <div class="mb-10 flex flex-col border-t-4 border-black-600 pt-4 md:flex-row">
-    <h2 class="mr-auto mb-4 text-4xl font-medium lg:text-3xl">"CASSE YOUTH ADALAH BRAND YANG TERBUAT DARI <span class="whitespace-nowrap text-black-600 md:text-black-600"> MASALAH PRIBADI TENTANG SEPATU"</span></h2>
+    <h2 class="mr-auto mb-4 text-4xl font-medium lg:text-3xl">"CASSE YOUTH ADALAH BRAND YANG TERBUAT DARI <span class="whitespace-nowrap text-black-600 md:text-black-600"> MASALAH PRIBADI TENTANG BAJU"</span></h2>
   </div>
   <div class="flex flex-col md:flex-row">
     <div>
-      <p class="mb-4 md:pr-10 md:text-xl md:leading-relaxed lg:pr-28">Di tahun 2021, Saya  menceritakan betapa sulitnya mencari sepatu ukuran Saya.
-
-Dengan pengetahuan saya tentang desain membuat sepatu Saya menganalisis masalah yang mereka hadapi. Ternyata, walaupun Indonesia mempunyai sumber daya material yang bagus, pengrajin sepatu yang handal, namun mereka tidak pernah melihat brand sepatu lokal yang bisa bersaing distandar internasional.</p>
-      <p class="md:pr-10 md:text-xl md:leading-relaxed lg:pr-28">Lahirlah CASSE YOUTH, brand sepatu asli Indonesia yang bertujuan membuat sepatu stylish, berkualitas tinggi, dengan harga terjangkau.</p>
+      <p class="mb-4 md:pr-10 md:text-xl md:leading-relaxed lg:pr-28">CASSE YOUTH adalah merek pakaian alternative dari Bandung. Didirikan pada tahun 2014, dengan pendekatan melalui budaya internet yang diterapkan pada setiap desain produknya yang membuat berkaitan erat dengan apa yang terjadi di kalangan anak muda. Selain itu, CASSE YOUTH sangat ingin menjadi tumpukan arsip yang bisa dilihat pasar seiring bertambahnya usia.</p>
+      <p class="md:pr-10 md:text-xl md:leading-relaxed lg:pr-28">Lahirlah CASSE YOUTH, brand baju asli Bandung yang bertujuan membuat baju stylish, berkualitas tinggi, dengan harga terjangkau.</p>
     </div>
     <p class="hidden uppercase md:block md:text-7xl">
       Berdiri Sejak <br />
-      <span class="whitespace-nowrap text-green-600">2024 </span>
+      <span class="whitespace-nowrap text-green-600">2014 </span>
     </p>
   </div>
 </div>
