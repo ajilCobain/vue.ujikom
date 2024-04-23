@@ -38,13 +38,13 @@
         <div v-if="showModal" class="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center">
           <div class="bg-white p-8 rounded-lg">
             <h2 class="text-lg font-bold mb-4">Tambah Gambar</h2>
-            <form @submit.prevent="handleSubmit">
+            <form>
               <div class="mb-4">
                 <label for="imageUrl" class="block text-sm font-medium text-gray-700">URL Gambar:</label>
                 <input type="text" id="imageUrl" v-model="imageUrl" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
               </div>
               <div class="flex justify-end">
-                <button type="submit" class="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-md">Tambah</button>
+                <button @click="handleSubmit" type="submit" class="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-md">Tambah</button>
                 <button @click="showModal = false" class="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold rounded-md ml-2">Batal</button>
               </div>
             </form>
@@ -64,7 +64,11 @@ export default {
   data() {
     return {
       showModal: false,
-      imageUrl: ''
+      imageUrl: '',
+      newGaleri: {
+        gambar: '', // 
+            },
+
     }
   },
   computed: {
@@ -76,22 +80,28 @@ export default {
   methods: {
     ...mapActions('galeri', ['fetchGaleri', 'createGaleri']),
     handleSubmit() {
-      // Handle form submission
-      if (this.imageUrl.trim() !== '') {
-        this.createGaleri({ gambar: this.imageUrl })
-          .then(() => {
-            console.log('Gambar berhasil ditambahkan');
-            this.imageUrl = ''; // Clear input field
-            this.showModal = false; // Close modal
-            this.$store.dispatch('galeri/fetchGaleri'); // Fetch galeri data again
-          })
-          .catch(error => {
-            console.error('Error:', error);
-          });
-      } else {
-        alert('URL gambar tidak boleh kosong');
-      }
-    }
+  // Handle form submission
+  if (this.imageUrl.trim() !== '') {
+    // Update newGaleri object
+    this.newGaleri.gambar = this.imageUrl;
+
+    // Dispatch createGaleri action with newGaleri object
+    this.createGaleri(this.newGaleri)
+      .then(() => {
+        console.log('Gambar berhasil ditambahkan');
+        this.imageUrl = ''; // Clear input field
+        this.showModal = false; // Close modal
+        this.$store.dispatch('galeri/fetchGaleri'); // Fetch galeri data again
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  } else {
+    alert('URL gambar tidak boleh kosong');
+  }
+}
+
+
   },
 };
 </script>

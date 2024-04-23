@@ -6,56 +6,26 @@
 
       <div class="mt-8 grid grid-cols-1 gap-6 md:mt-10 md:grid-cols-3 lg:gap-8">
         
-        <article class="bg-slate-50 p-8">
+        <article class="bg-slate-50 p-8" v-for="item in galeri" :key="item.id">
           <div class="">
-            <h2 class="text-xl text-gray-600">Mens' Scotch</h2>
+            <h2 class="text-xl text-gray-600"></h2>
             <p class="mt-2 text-xl font-semibold text-gray-800"></p>
           </div>
           <div class="mt-8 flex items-center justify-center md:mt-24">
-            <img class="" src="https://asset.kompas.com/crops/DTOWRyubcMHQ9QtY8lI6_Y9vvVU=/102x14:1310x820/1200x800/data/photo/2023/07/13/64af662073992.jpg" alt="" />
-          </div>
-        </article>
-        
-        <article class="bg-slate-50 p-8">
-          <div class="">
-            <h2 class="text-xl text-gray-600">Mens' Red</h2>
-            <p class="mt-2 text-xl font-semibold text-gray-800"></p>
-          </div>
-          <div class="mt-8 flex items-center justify-center md:mt-24">
-            <img class="" src="https://asset.kompas.com/crops/DTOWRyubcMHQ9QtY8lI6_Y9vvVU=/102x14:1310x820/1200x800/data/photo/2023/07/13/64af662073992.jpg" alt="" />
-          </div>
-        </article>
-        
-        <article class="bg-slate-50 p-8">
-          <div class="">
-            <h2 class="text-xl text-gray-600">Mens' Punk</h2>
-            <p class="mt-2 text-xl font-semibold text-gray-800"></p>
-          </div>
-          <div class="mt-8 flex items-center justify-center md:mt-24">
-            <img src="https://asset.kompas.com/crops/DTOWRyubcMHQ9QtY8lI6_Y9vvVU=/102x14:1310x820/1200x800/data/photo/2023/07/13/64af662073992.jpg" alt="" />
+            <img class="" :src="item.gambar"  alt="" />
           </div>
         </article>
       </div>
 
       <div class="mt-4 grid grid-cols-1 gap-5 md:mt-6 md:grid-cols-2 md:gap-6 lg:mt-8 lg:gap-8">
         
-        <article class="bg-slate-50 p-8">
+        <article class="bg-slate-50 p-8" v-for="item in galeri?.slice(0,2)" :key="item.id">
           <div>
             <h2 class="text-xl text-gray-600">Mens' Black</h2>
             <p class="mt-2 text-xl font-semibold text-gray-800"></p>
           </div>
           <div class="mt-28 flex items-center justify-center md:mt-3">
-            <img src="https://asset.kompas.com/crops/DTOWRyubcMHQ9QtY8lI6_Y9vvVU=/102x14:1310x820/1200x800/data/photo/2023/07/13/64af662073992.jpg" alt="" />
-          </div>
-        </article>
-        
-        <article class="bg-slate-50 p-8">
-          <div>
-            <h2 class="text-xl text-gray-600">Womens' Brown</h2>
-            <p class="mt-2 text-xl font-semibold text-gray-800"></p>
-          </div>
-          <div class="mt-28 flex items-center justify-center md:mt-1">
-            <img src="https://asset.kompas.com/crops/DTOWRyubcMHQ9QtY8lI6_Y9vvVU=/102x14:1310x820/1200x800/data/photo/2023/07/13/64af662073992.jpg" alt="" />
+            <img :src=item.gambar alt="" />
           </div>
         </article>
       </div>
@@ -64,3 +34,23 @@
 </section>
 
 </template>
+
+<script>
+import { mapActions, mapGetters } from 'vuex';
+
+export default{
+  computed: {
+    ...mapGetters('galeri', ['getAllGaleri']),
+    galeri(){
+      return this.getAllGaleri.data;
+    },
+
+  },
+  methods:{
+    ...mapActions('galeri', ['fetchGaleri']),
+  },
+  mounted(){
+    this.fetchGaleri();
+  }
+}
+</script>

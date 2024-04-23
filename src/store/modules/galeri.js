@@ -31,15 +31,16 @@ const galeri = {
       }
     },
     async createGaleri({ commit }, galeriData) {
-      try {
-        const response = await axios.post("http://localhost:8080/api/v1/galeri", galeriData);
-        commit("ADD_GALERI", response.data);
-        return response.data;
-      } catch (error) {
-        console.error(error);
-        throw error;
-      }
-    },
+        try {
+          const response = await axios.post("http://localhost:8080/api/v1/galeri", galeriData);
+          const newGaleri = response.data; // Ambil data baru dari respons server
+          commit("ADD_GALERI", newGaleri); // Panggil mutasi ADD_GALERI dengan data baru
+          return newGaleri; // Kembalikan data baru
+        } catch (error) {
+          console.error(error);
+          throw error;
+        }
+      },      
     async updateGaleri({ commit }, galeriData) {
       try {
         const response = await axios.put(`http://localhost:8080/api/v1/galeri/${galeriData.id}`, galeriData);
@@ -69,7 +70,7 @@ const galeri = {
       state.currentGaleri = galeri;
     },
     ADD_GALERI(state, newGaleri) {
-      state.galeri.push(newGaleri);
+        state.galeri.push(newGaleri); // Tambahkan galeri baru ke dalam state
     },
     DELETE_GALERI(state, galeriId) {
       state.galeri = state.galeri.filter(galeri => galeri.id !== galeriId);

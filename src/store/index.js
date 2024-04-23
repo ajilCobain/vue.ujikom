@@ -3,6 +3,7 @@ import auth from './modules/auth';
 import produk from './modules/produk';
 import kontak from './modules/kontak';
 import datauser from './modules/profile';
+import galeri from './modules/galeri';
 
 
 const store = createStore({
@@ -14,6 +15,7 @@ const store = createStore({
     produk,
     kontak,
     datauser,
+    galeri
   },
 });
 
